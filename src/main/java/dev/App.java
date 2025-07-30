@@ -1,22 +1,21 @@
 package dev;
 
 import com.github.lalyos.jfiglet.FigletFont;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+
+import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * Hello world!
  */
 public class App {
-    private static  final  Logger LOGGER =LoggerFactory.getLogger( App.class);
 
-    public static void main(String[] args) {
-        try {
-            String asciiArt = FigletFont.convertOneLine("Hello World !");
-            System.out.println(asciiArt);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException {
+        String title = ResourceBundle.getBundle("application").getString("title");
+        String asciiArt = FigletFont.convertOneLine(title);
+        System.out.println(asciiArt);
 
+        String environment = ResourceBundle.getBundle("application").getString("environment");
+        System.out.println("Environment : " + environment);
     }
 }

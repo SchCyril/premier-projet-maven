@@ -16,6 +16,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.11.0</junit.version>
         <logger.version>1.5.13</logger.version>
+        <mode>DEV</mode>
     </properties>
 
     <dependencyManagement>
@@ -68,7 +69,6 @@
             <version>0.0.8</version>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -98,6 +98,12 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
@@ -142,4 +148,22 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mode>DEV</mode>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <mode>PROD</mode>
+            </properties>
+        </profile>
+    </profiles>
 </project>
